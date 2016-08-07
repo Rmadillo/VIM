@@ -53,8 +53,6 @@
 #' If four colors are supplied, the first is used as start color and the second
 #' as end color for the available data, while the third/fourth color is used
 #' for missing/imputed data.
-#' @param gamma numeric; the display \emph{gamma} value (see
-#' \code{\link[colorspace]{hex}}).
 #' @param fixup a logical indicating whether the colors should be corrected to
 #' valid RGB values (see \code{\link[colorspace]{hex}}).
 #' @param xlim,ylim axis limits.
@@ -101,7 +99,6 @@
 #' @S3method matrixplot default
 matrixplot <- function(x, delimiter = NULL, sortby = NULL,
                        col = c("red","orange"),
-                       gamma = 2.2, 
                        fixup = TRUE, xlim = NULL, ylim = NULL, 
                        main = NULL, sub = NULL, xlab = NULL, 
                        ylab = NULL, axes = TRUE, labels = axes, 
@@ -111,41 +108,37 @@ matrixplot <- function(x, delimiter = NULL, sortby = NULL,
 
 matrixplot.data.frame <- function(x, delimiter = NULL, sortby = NULL,
                                   col = c("red","orange"),
-                                  gamma = 2.2, 
                                   fixup = TRUE, xlim = NULL, ylim = NULL, 
                                   main = NULL, sub = NULL, xlab = NULL, 
                                   ylab = NULL, axes = TRUE, labels = axes, 
                                   xpd = NULL, interactive = TRUE, ...) {
-  matrixplot_work(x, delimiter, sortby, col, gamma, fixup, xlim, ylim,
+  matrixplot_work(x, delimiter, sortby, col, fixup, xlim, ylim,
                   main, sub, xlab, ylab, axes, labels, xpd, interactive, ...)
 }
 
 matrixplot.survey.design <- function(x, delimiter = NULL, sortby = NULL,
                                      col = c("red","orange"),
-                                     gamma = 2.2, 
                                      fixup = TRUE, xlim = NULL, ylim = NULL, 
                                      main = NULL, sub = NULL, xlab = NULL, 
                                      ylab = NULL, axes = TRUE, labels = axes, 
                                      xpd = NULL, interactive = TRUE, ...) {
-  matrixplot_work(x$variables, delimiter, sortby, col, gamma, fixup, xlim, ylim,
+  matrixplot_work(x$variables, delimiter, sortby, col, fixup, xlim, ylim,
                   main, sub, xlab, ylab, axes, labels, xpd, interactive, ...)
 }
 
 matrixplot.default <- function(x, delimiter = NULL, sortby = NULL,
                                col = c("red","orange"),
-                               gamma = 2.2, 
                                fixup = TRUE, xlim = NULL, ylim = NULL, 
                                main = NULL, sub = NULL, xlab = NULL, 
                                ylab = NULL, axes = TRUE, labels = axes, 
                                xpd = NULL, interactive = TRUE, ...) {
-  matrixplot_work(as.data.frame(x), delimiter, sortby, col, gamma, fixup, xlim, ylim,
+  matrixplot_work(as.data.frame(x), delimiter, sortby, col, fixup, xlim, ylim,
                   main, sub, xlab, ylab, axes, labels, xpd, interactive, ...)
 }
 
 matrixplot_work <- function(x, delimiter = NULL, sortby = NULL,
 		col = c("red","orange"), 
         #space = c("rgb", "hcl"), 
-        gamma = 2.2, 
         fixup = TRUE, xlim = NULL, ylim = NULL, 
         main = NULL, sub = NULL, xlab = NULL, 
         ylab = NULL, axes = TRUE, labels = axes, 
