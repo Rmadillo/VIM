@@ -231,7 +231,7 @@ matrixplot_work <- function(x, delimiter = NULL, sortby = NULL,
                 start <- c(100, 0, col@coords[1, "H"])
                 end <- c(0, 0, col@coords[1, "H"])
             }
-            col <- rep(hex(col, gamma=gamma, fixup=fixup),2)
+            col <- rep(hex(col, fixup=fixup),2)
         } else if(nrow(coords(col)) == 2) {
 			if(is(col, "RGB")){
 				# RGB colors
@@ -242,7 +242,7 @@ matrixplot_work <- function(x, delimiter = NULL, sortby = NULL,
 				start <- c(100, 0, col@coords[1, "H"])
 				end <- c(0, 0, col@coords[1, "H"])
 			}
-			col <- hex(col, gamma=gamma, fixup=fixup)
+			col <- hex(col, fixup=fixup)
 		} else if(nrow(coords(col)) == 3) {
             if(is(col, "RGB")){
                 # RGB colors
@@ -252,17 +252,17 @@ matrixplot_work <- function(x, delimiter = NULL, sortby = NULL,
                 start <- polarLUV(100, 0, col@coords[1, "H"])
             }
             end <- col[1,]
-			col <- hex(col[2:3,], gamma=gamma, fixup=fixup)
+			col <- hex(col[2:3,], fixup=fixup)
         } else {
             start <- col[1,]
             end <- col[2,]
-            col <- hex(col[3:4,], gamma=gamma, fixup=fixup)
+            col <- hex(col[3:4,], fixup=fixup)
         }
     }
     if(is.character(start)) startcol <- start 
-    else startcol <- hex(start, gamma=gamma, fixup=fixup)
+    else startcol <- hex(start, fixup=fixup)
     if(is.character(end)) endcol <- end 
-    else endcol <- hex(end, gamma=gamma, fixup=fixup)
+    else endcol <- hex(end, fixup=fixup)
     # function to get color sequence (or red/orange if missing/imputed)
 	getCol <- function(x, ord = NULL) {
         iOK <- !is.na(x)
